@@ -85,7 +85,7 @@ const MENU_SECTIONS: MenuSection[] = [
           "Caldo claro de cerdo curado en casa, hojaldre tibio de pan sobao y aceite de culantro.",
         price: 18,
         image:
-          "https://images.unsplash.com/photo-1547308283-b941e60f7e39?w=400&q=80&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80&auto=format&fit=crop",
       },
     ],
   },
@@ -365,10 +365,24 @@ function Navbar() {
   );
 }
 
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mql = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+  return isDesktop;
+}
+
 function Hero() {
   const { scrollY } = useScroll();
   const yImg = useTransform(scrollY, [0, 600], [0, -60]);
   const yText = useTransform(scrollY, [0, 600], [0, 40]);
+  const isDesktop = useIsDesktop();
 
   return (
     <section
@@ -379,7 +393,7 @@ function Hero() {
 
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-5 md:px-10 lg:grid-cols-12 lg:gap-10">
         <motion.div
-          style={{ y: yText }}
+          style={isDesktop ? { y: yText } : undefined}
           initial="hidden"
           animate="visible"
           variants={stagger}
@@ -454,7 +468,7 @@ function Hero() {
         </motion.div>
 
         <motion.div
-          style={{ y: yImg }}
+          style={isDesktop ? { y: yImg } : undefined}
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
