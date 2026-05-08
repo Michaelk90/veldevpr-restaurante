@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-noir: #0a0907;
+  --color-noir-soft: #14110d;
+  --color-noir-mute: #1c1814;
+  --color-noir-line: #2a241c;
+  --color-cream: #f4ede0;
+  --color-cream-mute: #cabfa9;
+  --color-champagne: #d4af6f;
+  --color-champagne-soft: #b8945c;
+  --color-champagne-glow: rgba(212, 175, 111, 0.32);
+  --color-rust: #8c4a3a;
+
+  --font-display: "Libre Bodoni", "Bodoni 72", Didot, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-noir);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-champagne);
+  color: var(--color-noir);
+}
+
+/* Subtle film grain — same trick used in El Clásico */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Slow gradient pan for hero ambient lighting */
+@keyframes pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-pan {
+  background-size: 200% 200%;
+  animation: pan 16s ease infinite;
+}
+
+/* Vertical reveal line for menu sections */
+@keyframes lineGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.line-grow {
+  transform-origin: left;
+  animation: lineGrow 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Form input focus ring */
+.input-base {
+  background: transparent;
+  border: 1px solid var(--color-noir-line);
+  color: var(--color-cream);
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  transition: border-color 0.2s;
+  width: 100%;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.input-base::placeholder {
+  color: rgba(244, 237, 224, 0.35);
+}
+
+.input-base:focus {
+  outline: none;
+  border-color: var(--color-champagne);
+}
