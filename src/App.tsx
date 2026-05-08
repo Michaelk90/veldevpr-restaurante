@@ -125,7 +125,7 @@ const MENU_SECTIONS: MenuSection[] = [
           "Arroz arborio, caldo de viandas, parmesano añejo y mascarpone de queso del país.",
         price: 34,
         image:
-          "https://images.unsplash.com/photo-1633964913849-96bb09cfb0ea?w=400&q=80&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Filete dry-aged 30 días",
