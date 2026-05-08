@@ -17,11 +17,12 @@ import {
 } from "lucide-react";
 import "./App.css";
 
-const PHONE_RAW = "+17875550202";
-const PHONE_DISPLAY = "(787) 555-0202";
-const WHATSAPP_NUMBER = "17875550202";
+const PHONE_RAW = "+17875281627";
+const PHONE_DISPLAY = "(787) 528-1627";
+const WHATSAPP_NUMBER = "17875281627";
 const WHATSAPP = `https://wa.me/${WHATSAPP_NUMBER}`;
 const ADDRESS = "Ave. Conquistador #12, Fajardo, PR";
+const CHEF_NAME = "Michael Velázquez Figueroa";
 
 const NAV_LINKS = [
   { label: "Casa", href: "#inicio" },
@@ -36,6 +37,7 @@ type MenuItem = {
   name: string;
   description: string;
   price: number;
+  image: string;
   tag?: string;
 };
 
@@ -57,12 +59,16 @@ const MENU_SECTIONS: MenuSection[] = [
         description:
           "Maíz tierno, queso del país y alioli de annato sobre hoja de plátano tostada.",
         price: 16,
+        image:
+          "https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Carpaccio de chillo",
         description:
           "Pesca del día, aceite de oliva extra virgen, sal marina y reducción de naranja agria.",
         price: 22,
+        image:
+          "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Tartar de atún rojo",
@@ -70,12 +76,16 @@ const MENU_SECTIONS: MenuSection[] = [
           "Aguacate criollo, almendra tostada, ralladura de granadilla y crujiente de yuca.",
         price: 26,
         tag: "Recomendado",
+        image:
+          "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Consomé de chicharrón",
         description:
           "Caldo claro de cerdo curado en casa, hojaldre tibio de pan sobao y aceite de culantro.",
         price: 18,
+        image:
+          "https://images.unsplash.com/photo-1547308283-b941e60f7e39?w=400&q=80&auto=format&fit=crop",
       },
     ],
   },
@@ -90,30 +100,40 @@ const MENU_SECTIONS: MenuSection[] = [
           "Langosta local, salsa criolla evolucionada, ajíes dulces del huerto y aceite de cilantrillo.",
         price: 48,
         tag: "Signature",
+        image:
+          "https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Lechón cocinado 12 horas",
         description:
           "Asado a baja temperatura, mole de café boricua, manzana asada y crujiente de cuero.",
         price: 42,
+        image:
+          "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Chillo entero a la sal",
         description:
           "Pesca diaria al horno bajo costra de sal marina, mojo isleño y viandas glaseadas.",
         price: 56,
+        image:
+          "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Risotto de gandules",
         description:
           "Arroz arborio, caldo de viandas, parmesano añejo y mascarpone de queso del país.",
         price: 34,
+        image:
+          "https://images.unsplash.com/photo-1633964913849-96bb09cfb0ea?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Filete dry-aged 30 días",
         description:
           "Lomo madurado, papa cremosa, espinaca trufada y demi-glace de café Yauco.",
         price: 62,
+        image:
+          "https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=400&q=80&auto=format&fit=crop",
       },
     ],
   },
@@ -127,18 +147,24 @@ const MENU_SECTIONS: MenuSection[] = [
         description:
           "Crema fría de coco, vainilla isleña, gel de parcha y polvo de canela.",
         price: 14,
+        image:
+          "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Sorbete de china valencia",
         description:
           "Naranja de la finca, hierba luisa fresca y espuma de champagne brut.",
         price: 13,
+        image:
+          "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=400&q=80&auto=format&fit=crop",
       },
       {
         name: "Helado de quesito",
         description:
           "Queso del país en helado, miel de caña, almendra activada y galleta de maicena.",
         price: 14,
+        image:
+          "https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=400&q=80&auto=format&fit=crop",
       },
     ],
   },
@@ -436,8 +462,8 @@ function Hero() {
         >
           <div className="relative aspect-[3/4] overflow-hidden rounded-[28px] border border-noir-line/70 bg-noir-soft md:aspect-[4/5] lg:aspect-[3/4]">
             <img
-              src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=90&auto=format&fit=crop"
-              alt="Plato signature de La Isla"
+              src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=900&q=90&auto=format&fit=crop"
+              alt="Mofongo de langosta — plato signature de La Isla"
               className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent" />
@@ -568,6 +594,21 @@ function Filosofia() {
             );
           })}
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+          className="mt-14 flex items-center gap-4 md:mt-20"
+        >
+          <span className="h-px flex-1 bg-noir-line" />
+          <span className="text-[11px] uppercase tracking-[0.3em] text-cream/55">
+            Chef ejecutivo ·{" "}
+            <span className="text-champagne">{CHEF_NAME}</span>
+          </span>
+          <span className="h-px flex-1 bg-noir-line" />
+        </motion.div>
       </div>
     </section>
   );
@@ -615,30 +656,40 @@ function Carta() {
                 </div>
               </motion.div>
 
-              <ul className="grid gap-x-16 gap-y-10 md:grid-cols-2">
+              <ul className="grid gap-x-12 gap-y-8 md:grid-cols-2 md:gap-y-10">
                 {section.items.map((item) => (
                   <motion.li
                     key={item.name}
                     variants={fadeUp}
                     transition={{ duration: 0.6 }}
-                    className="group"
+                    className="group flex gap-5 md:gap-6"
                   >
-                    <div className="flex items-baseline gap-3">
-                      <h4 className="font-display text-xl tracking-tight text-cream md:text-2xl">
-                        {item.name}
-                      </h4>
-                      {item.tag && (
-                        <span className="shrink-0 rounded-full border border-champagne/40 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.2em] text-champagne">
-                          {item.tag}
-                        </span>
-                      )}
-                      <span className="ml-auto whitespace-nowrap font-display text-xl text-champagne md:text-2xl">
-                        ${item.price}
-                      </span>
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-noir-line/70 bg-noir-mute md:h-28 md:w-28">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
                     </div>
-                    <p className="mt-2 text-sm leading-relaxed text-cream/60 md:text-[15px]">
-                      {item.description}
-                    </p>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-baseline gap-3">
+                        <h4 className="font-display text-xl tracking-tight text-cream md:text-2xl">
+                          {item.name}
+                        </h4>
+                        {item.tag && (
+                          <span className="shrink-0 rounded-full border border-champagne/40 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.2em] text-champagne">
+                            {item.tag}
+                          </span>
+                        )}
+                        <span className="ml-auto whitespace-nowrap font-display text-xl text-champagne md:text-2xl">
+                          ${item.price}
+                        </span>
+                      </div>
+                      <p className="mt-2 text-sm leading-relaxed text-cream/60 md:text-[15px]">
+                        {item.description}
+                      </p>
+                    </div>
                   </motion.li>
                 ))}
               </ul>
